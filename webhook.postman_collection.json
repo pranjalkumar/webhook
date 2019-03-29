@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "a07e00c9-7bbf-4538-a5dd-b10a590b3168",
+		"name": "webhook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"pranjalkumar8228@gmail.com\",\n\t\"password\":\"abc123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"pranjalkumar8228@gmail.com\",\n\t\"password\":\"abc123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/addwebhook",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYW5qYWxrdW1hcjgyMjlAZ21haWwuY29tIiwidXNlcklkIjoiNWM5ZTY5NDMwNzdkZTQxZjM0ZjA3N2Y0IiwiaWF0IjoxNTUzODg5NjQxLCJleHAiOjE1NTM4OTMyNDF9.nJmwjkU4pbEhP_BUFsd8UDmKewgzhoRagOOcC5-mZec",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"scanningUrl\":\"www.alphavantage.com\",\n\t\"conditions\":{\n\t\t\"parameter\":\"volume\",\n\t\t\"difference\":150\n\t},\n\t\"returningUrl\":\"www.alphavantage.com\",\n\t\"time_interval\":1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/addwebhook",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"addwebhook"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
