@@ -5,6 +5,8 @@ const Webhooks=require('../models/webhook').Webhooks;
 const Users=require('../models/user').Users;
 const Stocks=require('../models/stockData').Stocks;
 
+const key='TA2O8Q047EBT10HI';
+
 exports.addWebhook=(req,res)=>{
     let user_id=req.userData.userId;
     let scanningUrl=req.body.scanningUrl;
