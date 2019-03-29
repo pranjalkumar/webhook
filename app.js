@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 const users = require('./routes/users');
+const index = require('./routes/index');
 
 const app = express();
 
@@ -38,7 +39,9 @@ app.use(function (req,res,next) {
 });
 
 //Routes middleware
+app.use('/', index);
 app.use('/', users);
+
 
 
 
