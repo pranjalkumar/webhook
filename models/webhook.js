@@ -10,7 +10,8 @@ const webhookSchema= mongoose.Schema({
     },
     returning_url:{type:String},
     time_interval:{type:Number},
-    time:{type:Date}
+    time:{type:Date},
+    pastData:{type:Number, default:0}
 });
 
 const webhooks=mongoose.model('webhook',webhookSchema);
