@@ -5,6 +5,8 @@ const Users=require('../models/user').Users;
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 
+//making api key for each user to help them validate the return request
+//random string generation
 function makeid(length) {
     let text = "";
     let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -15,7 +17,9 @@ function makeid(length) {
     return text;
 }
 
+//registering new user
 exports.register= (req,res)=> {
+    //checking if user already exists or not
     Users.find({email: req.body.email},(err,data)=>{
         if(data.length>=1){
             return res.status(409).json({
@@ -23,6 +27,7 @@ exports.register= (req,res)=> {
                 message: 'user already exists'
             });
         }else{
+            // creating the hash of the password
             bcrypt.hash(req.body.password, 10, (err, hash)=> {
                 if (err) {
                     return res.status(500).json({
@@ -30,6 +35,7 @@ exports.register= (req,res)=> {
                         message: 'sorry! something happened, please try again'
                     });
                 } else {
+                    //creating a new user
                     let user = new Users({
                         _id: new mongoose.Types.ObjectId(),
                         email: req.body.email,
@@ -57,6 +63,8 @@ exports.register= (req,res)=> {
 
 };
 
+//deleting the user with the help of userid
+//for testing purpose
 exports.deleteuser= (req,res)=> {
     let id=req.params.id;
     Users.remove({_id:id},(err,result)=> {
@@ -75,7 +83,7 @@ exports.deleteuser= (req,res)=> {
     });
 };
 
-
+//login function
 exports.login= (req,res)=> {
     Users.find({email: req.body.email},(err,data)=> {
        if(data.length<1 || err){
@@ -84,6 +92,7 @@ exports.login= (req,res)=> {
                message: 'invalid user'
            });
        }else{
+           //comparing both the passwords
            bcrypt.compare(req.body.password,data[0].password,(err,result)=> {
                if(err){
                    return res.status(401).json({
@@ -92,6 +101,7 @@ exports.login= (req,res)=> {
                    });
                }
                if(result){
+                   //generating a JWT token users users email and userid
                    let token= jwt.sign({
                       email: data[0].email,
                        userId: data[0]._id
