@@ -8,3 +8,7 @@ Observable Url, Fetch Interval in terms of minutes, Condition/s to check with we
 
 ### Scope 
 Should support one basic condition format
+
+### How to run 
+1. Run 'npm install ' to install all the dependencies
+2. A sample request for the postman is also included in the project.
